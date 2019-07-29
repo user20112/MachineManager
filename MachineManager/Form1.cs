@@ -1,14 +1,11 @@
 ﻿using SNPService;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MachineManager
@@ -21,7 +18,7 @@ namespace MachineManager
         private string ENG_DBInitialCatalog;                                                    //Engineering Database that we are talking to
         public SqlConnection ENGDBConnection;
         public TopicPublisher Publisher;
-        List<Machine> Machines;
+        private List<Machine> Machines;
 
         public Form1()
         {
@@ -29,9 +26,9 @@ namespace MachineManager
             Connect();
             refresh();
         }
+
         public void Connect()
         {
-
             ENG_DBDataSource = ConfigurationManager.AppSettings["ENGDBIP"];
             ENG_DBUserID = ConfigurationManager.AppSettings["ENGDBUser"];
             ENG_DBPassword = ConfigurationManager.AppSettings["ENGDBPassword"];
@@ -45,6 +42,7 @@ namespace MachineManager
             ENGDBConnection.Open();
             Publisher = new TopicPublisher(ConfigurationManager.AppSettings["MainTopicName"], ConfigurationManager.AppSettings["BrokerIP"]);//open the connection
         }
+
         public void refresh()
         {
             Machines = new List<Machine>();
@@ -103,7 +101,6 @@ namespace MachineManager
                 string errorstring = "";
                 try
                 {
-
                     foreach (string error in machine.StartingErrors)
                     {
                         errorstring += error + ",";
@@ -123,11 +120,11 @@ namespace MachineManager
             DisplayListView.ItemSelectionChanged += new ListViewItemSelectionChangedEventHandler(SelectionChanged);
             DisplayListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
+
         private void SelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             try
             {
-
                 Machine machine = Machines[GetMachineIndexByName(DisplayListView.SelectedItems[0].SubItems[0].Text, DisplayListView.SelectedItems[0].SubItems[1].Text)];
                 MachineIDBox.Text = machine.SNPID.ToString();
                 MachineNameBox.Text = machine.MachineName;
@@ -145,9 +142,9 @@ namespace MachineManager
             }
             catch
             {
-
             }
         }
+
         private void ToolStripButton1_Click(object sender, EventArgs e)//new
         {
             var confirmResult = MessageBox.Show("Are you sure?",
@@ -167,7 +164,6 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show("PacketSendFailed");
                     refresh();
                 }
@@ -181,7 +177,6 @@ namespace MachineManager
                                          MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-
                 try
                 {
                     Machine machine = Machines[GetMachineIndexByName(DisplayListView.SelectedItems[0].SubItems[0].Text, DisplayListView.SelectedItems[0].SubItems[1].Text)];
@@ -197,7 +192,6 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show("PacketSendFailed");
                     refresh();
                 }
@@ -232,7 +226,6 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show("PacketSendFailed");
                     refresh();
                 }
@@ -248,7 +241,6 @@ namespace MachineManager
             {
                 try
                 {
-
                     Machine machine = Machines[GetMachineIndexByName(DisplayListView.SelectedItems[0].SubItems[0].Text, DisplayListView.SelectedItems[0].SubItems[1].Text)];
                     var confirmResult = MessageBox.Show("Are yo usure you want to delete any machine with the name" + machine.MachineName + "and line " + machine.Line,
                                              "Confirm Delete!!",
@@ -268,19 +260,16 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-
                     MessageBox.Show("PacketSendFailed");
                     refresh();
                 }
             }
-
         }
 
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-
                 Machine machine = Machines[GetMachineIndexByName(DisplayListView.SelectedItems[0].SubItems[0].Text, DisplayListView.SelectedItems[0].SubItems[1].Text)];
                 List<string> AllErrors = new List<string>(ErrorBox.Text.Split(','));
                 machine.NewErrors = AllErrors.Except(machine.StartingErrors).ToList();
@@ -294,11 +283,11 @@ namespace MachineManager
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("PacketSendFailed");
                 refresh();
             }
         }
+
         public int GetListViewIndexByName(string name, string Line)
         {
             int x = 0;
@@ -312,6 +301,7 @@ namespace MachineManager
             }
             return x;
         }
+
         public int GetMachineIndexByName(string name, string Line)
         {
             int x = 0;
