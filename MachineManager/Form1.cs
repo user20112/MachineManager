@@ -164,7 +164,7 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("PacketSendFailed");
+                    MessageBox.Show("PacketSendFailed ");
                     refresh();
                 }
             }
@@ -192,7 +192,7 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("PacketSendFailed");
+                    MessageBox.Show("PacketSendFailed Make sure you have the Machine you would like to edit selected.");
                     refresh();
                 }
             }
@@ -226,7 +226,7 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("PacketSendFailed");
+                    MessageBox.Show("PacketSendFailedMake sure you have the Machine you would like to delete selected.");
                     refresh();
                 }
             }
@@ -260,7 +260,7 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("PacketSendFailed");
+                    MessageBox.Show("PacketSendFailed Make sure you have the Machine you would like to delete selected.");
                     refresh();
                 }
             }
@@ -283,7 +283,7 @@ namespace MachineManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show("PacketSendFailed");
+                MessageBox.Show("PacketSendFailed Make sure you have the Machine you would like to edit selected.");
                 refresh();
             }
         }
