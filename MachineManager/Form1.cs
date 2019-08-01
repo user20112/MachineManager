@@ -58,10 +58,6 @@ namespace MachineManager
                     while (dr.Read())
                     {
                         Machine machine = new Machine(dr[5].ToString(), dr[1].ToString(), dr[6].ToString(), Convert.ToInt32(dr[4]), Convert.ToInt32(dr[3]), dr[2].ToString(), new List<String>(), Convert.ToInt32(dr[0]));
-                        for (int x = 7; x < dr.FieldCount; x++)
-                        {
-                            machine.StartingErrors.Add(dr[x].ToString());
-                        }
                         Machines.Add(machine);
                     }
                 }
@@ -69,7 +65,7 @@ namespace MachineManager
             foreach (Machine machine in Machines)
             {
                 sqlStringBuilder = new StringBuilder();
-                sqlStringBuilder.Append(" USE [" + machine.Line + "] ");//select database
+                sqlStringBuilder.Append(" USE [EngDb-" + machine.Line + "] ");//select database
                 sqlStringBuilder.Append("SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('dbo." + machine.MachineName + "ShortTimeStatistics')");  //start loading the command into the string
                 SQLString = sqlStringBuilder.ToString();                                    //Convert Builder to string
                 using (SqlCommand command = new SqlCommand(SQLString, ENGDBConnection))
@@ -79,7 +75,7 @@ namespace MachineManager
                         int x = 0;
                         while (dr.Read())
                         {
-                            if (x >= 8)
+                            if (x >= 9)
                             {
                                 machine.StartingErrors.Add(dr[1].ToString());
                             }
@@ -118,7 +114,7 @@ namespace MachineManager
             DisplayListView.FullRowSelect = true;
             DisplayListView.MultiSelect = false;
             DisplayListView.ItemSelectionChanged += new ListViewItemSelectionChangedEventHandler(SelectionChanged);
-            DisplayListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            DisplayListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void SelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
