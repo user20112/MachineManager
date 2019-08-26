@@ -175,7 +175,7 @@ namespace MachineManager
             {
                 try
                 {
-                    Machine machine = Machines[GetMachineIndexByName(DisplayListView.SelectedItems[0].SubItems[0].Text, DisplayListView.SelectedItems[0].SubItems[1].Text)];
+                    Machine machine = Machines[GetMachineIndexByName(MachineNameBox.Text, LineBox.Text)];
                     List<string> AllErrors = new List<string>(ErrorBox.Text.Split(','));
                     machine.NewErrors = AllErrors.Except(machine.StartingErrors).ToList();
                     machine.Engineer = EngineerBox.Text;
@@ -203,7 +203,7 @@ namespace MachineManager
             {
                 try
                 {
-                    Machine machine = Machines[GetMachineIndexByName(DisplayListView.SelectedItems[0].SubItems[0].Text, DisplayListView.SelectedItems[0].SubItems[1].Text)];
+                    Machine machine = Machines[GetMachineIndexByName(MachineNameBox.Text, LineBox.Text)];
                     var confirmResult = MessageBox.Show("Are yo usure you want to delete any machine with the name" + machine.MachineName + "and line " + machine.Line,
                                              "Confirm Delete!!",
                                              MessageBoxButtons.YesNo);
@@ -237,7 +237,7 @@ namespace MachineManager
             {
                 try
                 {
-                    Machine machine = Machines[GetMachineIndexByName(DisplayListView.SelectedItems[0].SubItems[0].Text, DisplayListView.SelectedItems[0].SubItems[1].Text)];
+                    Machine machine = Machines[GetMachineIndexByName(MachineNameBox.Text, LineBox.Text)];
                     var confirmResult = MessageBox.Show("Are yo usure you want to delete any machine with the name" + machine.MachineName + "and line " + machine.Line,
                                              "Confirm Delete!!",
                                              MessageBoxButtons.YesNo);
@@ -266,7 +266,7 @@ namespace MachineManager
         {
             try
             {
-                Machine machine = Machines[GetMachineIndexByName(DisplayListView.SelectedItems[0].SubItems[0].Text, DisplayListView.SelectedItems[0].SubItems[1].Text)];
+                Machine machine = Machines[GetMachineIndexByName(MachineNameBox.Text, LineBox.Text)];
                 List<string> AllErrors = new List<string>(ErrorBox.Text.Split(','));
                 machine.NewErrors = AllErrors.Except(machine.StartingErrors).ToList();
                 machine.Engineer = EngineerBox.Text;
