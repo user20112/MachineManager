@@ -126,7 +126,6 @@ namespace MachineManager
                 MachineNameBox.Text = machine.MachineName;
                 LineBox.Text = machine.Line;
                 PlantBox.Text = machine.Plant;
-                SNPIDBox.Text = machine.SNPID.ToString();
                 TheoreticalBox.Text = machine.Theoretical.ToString();
                 EngineerBox.Text = machine.Engineer;
                 ErrorBox.Text = "";
@@ -150,7 +149,7 @@ namespace MachineManager
             {
                 try
                 {
-                    Machine machine = new Machine(PlantBox.Text, MachineNameBox.Text, EngineerBox.Text, Convert.ToInt32(TheoreticalBox.Text), Convert.ToInt32(SNPIDBox.Text), LineBox.Text, new List<String>(), Convert.ToInt32(MachineIDBox.Text));
+                    Machine machine = new Machine(PlantBox.Text, MachineNameBox.Text, EngineerBox.Text, Convert.ToInt32(TheoreticalBox.Text), Convert.ToInt32(MachineIDBox.Text), LineBox.Text, new List<String>(), Convert.ToInt32(MachineIDBox.Text));
                     string[] errors = ErrorBox.Text.Split(',');
                     foreach (string error in errors)
                         machine.NewErrors.Add(error);
@@ -180,7 +179,7 @@ namespace MachineManager
                     machine.NewErrors = AllErrors.Except(machine.StartingErrors).ToList();
                     machine.Engineer = EngineerBox.Text;
                     machine.Theoretical = Convert.ToInt32(TheoreticalBox.Text);
-                    machine.SNPID = Convert.ToInt32(SNPIDBox.Text);
+                    machine.SNPID = Convert.ToInt32(MachineIDBox.Text);
                     machine.Save(Publisher);
 
                     MessageBox.Show("PacketSent");
@@ -271,7 +270,7 @@ namespace MachineManager
                 machine.NewErrors = AllErrors.Except(machine.StartingErrors).ToList();
                 machine.Engineer = EngineerBox.Text;
                 machine.Theoretical = Convert.ToInt32(TheoreticalBox.Text);
-                machine.SNPID = Convert.ToInt32(SNPIDBox.Text);
+                machine.SNPID = Convert.ToInt32(MachineIDBox.Text);
                 machine.Save(Publisher);
 
                 MessageBox.Show("PacketSent");
