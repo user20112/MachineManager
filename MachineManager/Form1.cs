@@ -159,7 +159,7 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("PacketSendFailed ");
+                    MessageBox.Show("Packet Send Failed ");
                     refresh();
                 }
             }
@@ -187,7 +187,7 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("PacketSendFailed Make sure you have the Machine you would like to edit selected.");
+                    MessageBox.Show("Packet Send Failed Make sure you have the Machine you would like to edit selected.");
                     refresh();
                 }
             }
@@ -203,7 +203,7 @@ namespace MachineManager
                 try
                 {
                     Machine machine = Machines[GetMachineIndexByName(MachineNameBox.Text, LineBox.Text)];
-                    var confirmResult = MessageBox.Show("Are yo usure you want to delete any machine with the name" + machine.MachineName + "and line " + machine.Line,
+                    var confirmResult = MessageBox.Show("Are you sure you want to delete any machine with the name " + machine.MachineName + " and line " + machine.Line,
                                              "Confirm Delete!!",
                                              MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
@@ -237,7 +237,7 @@ namespace MachineManager
                 try
                 {
                     Machine machine = Machines[GetMachineIndexByName(MachineNameBox.Text, LineBox.Text)];
-                    var confirmResult = MessageBox.Show("Are yo usure you want to delete any machine with the name" + machine.MachineName + "and line " + machine.Line,
+                    var confirmResult = MessageBox.Show("Are you sure you want to delete any machine with the name " + machine.MachineName + " and line " + machine.Line,
                                              "Confirm Delete!!",
                                              MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
@@ -255,7 +255,7 @@ namespace MachineManager
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("PacketSendFailed Make sure you have the Machine you would like to delete selected.");
+                    MessageBox.Show("Packet Send Failed Make sure you have the Machine you would like to delete selected.");
                     refresh();
                 }
             }
@@ -278,7 +278,7 @@ namespace MachineManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show("PacketSendFailed Make sure you have the Machine you would like to edit selected.");
+                MessageBox.Show("Packet Send Failed Make sure you have the Machine you would like to edit selected.");
                 refresh();
             }
         }
